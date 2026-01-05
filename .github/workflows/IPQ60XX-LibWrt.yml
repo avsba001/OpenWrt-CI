@@ -155,9 +155,9 @@ jobs:
       if: steps.compile.outputs.status == 'success' && env.FIRMWARE_RELEASE == 'true'
       uses: ncipollo/release-action@main
       with:
-        name: ${{ env.DATE }} for ${{ env.FIRMWARE_TAG }}
-        allowUpdates: true
-        tag: ${{ env.FIRMWARE_TAG }}
+        name: ${{ env.FIRMWARE_TAG }} - ${{ env.DATE }}
+        allowUpdates: false  # 改为false，不覆盖现有release
+        tag: ${{ env.FIRMWARE_TAG }}-${{ github.run_id }}-${{ github.run_attempt }}  # 使用唯一tag
         token: ${{ secrets.GITHUB_TOKEN }}
         artifacts: ${{ env.FIRMWARE_PATH }}/*
         body: |
@@ -167,8 +167,9 @@ jobs:
           - ⚽ 固件源码: ${{ env.REPO_URL }}
           - 💝 源码分支: ${{ env.REPO_BRANCH }}
           - 🌐 默认地址: **192.168.1.1**
-          - 🔑 默认密码: none
+          - 🔑 默认密码: password
           ### 🧊 固件版本
+          - 编译时间：**${{ env.DATE }}**
           - 固件内核版本：**${{ env.VERSION_KERNEL }}**
           - 固件编译前最后一次➦[主源码](${{ env.REPO_URL }})更新记录
           - ${{ env.VERSION_INFO }}
