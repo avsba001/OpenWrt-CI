@@ -90,7 +90,7 @@ git clone --depth=1 https://github.com/vernesong/OpenClash package/luci-app-open
 
 # 清理 PassWall 的 chnlist 规则文件
 echo "baidu.com"  > package/luci-app-passwall/luci-app-passwall/root/usr/share/passwall/rules/chnlist
-sed -i '$a src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
+#sed -i '$a src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a
