@@ -73,10 +73,6 @@ git clone --depth=1 https://github.com/tty228/luci-app-wechatpush package/luci-a
 git clone --depth=1 https://github.com/destan19/OpenAppFilter.git package/OpenAppFilter
 git clone --depth=1 https://github.com/lwb1978/openwrt-gecoosac package/openwrt-gecoosac
 git clone --depth=1 https://github.com/NONGFAH/luci-app-athena-led package/luci-app-athena-led
-git clone --depth=1 https://github.com/nikkinikki-org/OpenWrt-momo package/momo
-git clone --depth=1 https://github.com/nikkinikki-org/OpenWrt-nikki package/nikki
-git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
-git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
 chmod +x package/luci-app-athena-led/root/etc/init.d/athena_led package/luci-app-athena-led/root/usr/sbin/athena-led
 
 ### PassWall & OpenClash ###
@@ -94,6 +90,7 @@ git clone --depth=1 https://github.com/vernesong/OpenClash package/luci-app-open
 
 # 清理 PassWall 的 chnlist 规则文件
 echo "baidu.com"  > package/luci-app-passwall/luci-app-passwall/root/usr/share/passwall/rules/chnlist
+sed -i '$a src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a
